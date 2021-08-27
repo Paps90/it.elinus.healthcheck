@@ -2,17 +2,18 @@ package com.example.itelinushealthcheck;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
+
 import android.os.Bundle;
+import android.provider.Settings;
+import android.telephony.AccessNetworkConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.itelinushealthcheck.databinding.ActivityMainBinding;
-
+import android.telephony.TelephonyManager;
+import android.content.Context;
 public class MainActivity extends Activity {
 
     private TextView mTextView;
@@ -28,12 +29,12 @@ public class MainActivity extends Activity {
         pulsante = (Button) findViewById(R.id.entra);
         mTextView = (TextView) findViewById(R.id.idospite);
 
-        // utilizzare Adroid id al posto
-        WifiManager manager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-        WifiInfo info = manager.getConnectionInfo();
+        String androidId = Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID);
 
-        String address = "Id ospite \n" + info.getMacAddress();
+        String address = "Id ospite \n" + androidId;
         mTextView.setText(address);
+
+
 
         pulsante.setOnClickListener(new View.OnClickListener() {
             @Override
