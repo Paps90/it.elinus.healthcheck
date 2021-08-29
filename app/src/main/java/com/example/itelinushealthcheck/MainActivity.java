@@ -1,51 +1,34 @@
 package com.example.itelinushealthcheck;
 
-import android.app.Activity;
-import android.content.Context;
+import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.telephony.AccessNetworkConstants;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.itelinushealthcheck.databinding.ActivityMainBinding;
-import android.telephony.TelephonyManager;
-import android.content.Context;
-public class MainActivity extends Activity {
-
-    private TextView mTextView;
-    private ActivityMainBinding binding;
-    private Button pulsante;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        pulsante = (Button) findViewById(R.id.entra);
-        mTextView = (TextView) findViewById(R.id.idospite);
+        TextView mTextView = (TextView) findViewById(R.id.testo1);
 
-        String androidId = Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID);
+        String androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
         String address = "Id ospite \n" + androidId;
         mTextView.setText(address);
 
+        Button button =  findViewById(R.id.button);
 
+        button.setOnClickListener(view -> {
+            Intent intent = new Intent(this, Next_Activity.class);
+            startActivity(intent);
 
-        pulsante.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Al click chiamare la seconda Activity
-                // la seconda Activity: avrà l'immagine di e-linus
-                // in background invia i dati sonno e contapassi
-            }
         });
-
-
 
     }
 }
