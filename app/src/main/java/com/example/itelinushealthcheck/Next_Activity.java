@@ -41,7 +41,7 @@ public class Next_Activity extends AppCompatActivity implements SensorEventListe
             mStepCounter = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
             isCounterPresent = true;
         } else {
-            textCounter.setText("Sensore dei passi assente");
+            textCounter.setText("Sensore conta passi assente");
             isCounterPresent = false;
         }
 
@@ -53,7 +53,7 @@ public class Next_Activity extends AppCompatActivity implements SensorEventListe
         if(sensorEvent.sensor == mStepCounter){
             stepcount = (int) sensorEvent.values[0];
 
-            
+
             textCounter.setText(String.valueOf(stepcount));
         }
 
